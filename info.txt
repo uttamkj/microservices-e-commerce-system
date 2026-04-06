@@ -1,0 +1,434 @@
+# 🛒 E-Commerce Microservices Platform
+
+A **production-style backend architecture** for an E-Commerce system built using **Java, Spring Boot, and Microservices architecture**.
+This project demonstrates how large-scale applications structure services, manage communication, and handle infrastructure using modern backend technologies.
+
+The goal of this project is to practice **real-world system design concepts** and build a portfolio-level backend project.
+
+---
+
+# 📌 Architecture Overview
+
+The system is designed using **Microservices Architecture**, where each service is independent and communicates with others through APIs or event-driven messaging.
+
+```
+                Client
+                  |
+                  ▼
+            API Gateway
+                  |
+      ---------------------------------
+      |        |        |             |
+      ▼        ▼        ▼             ▼
+ User Service Product  Order       Payment
+              Service  Service     Service
+                                   |
+                                   ▼
+                            Notification Service
+```
+
+### Infrastructure Components
+
+* **Service Discovery** → Eureka Server
+* **API Gateway** → Central request routing
+* **MySQL** → Main database
+* **Redis** → Caching layer
+* **Kafka + Zookeeper** → Event streaming between services
+* **Docker Compose** → Infrastructure orchestration
+
+---
+
+# 🧱 Project Structure
+
+```
+ecommerce-microservices
+│
+├── service-discovery        # Eureka Server
+├── api-gateway              # API Gateway for routing requests
+├── user-service             # User management service
+├── product-service          # Product catalog service
+├── order-service            # Order processing
+├── payment-service          # Payment handling
+├── notification-service     # Email/notification service
+│
+├── docker-compose.yml       # Infrastructure containers
+└── pom.xml                  # Parent Maven configuration
+```
+
+---
+
+# ⚙️ Technologies Used
+
+### Backend
+
+* Java 17
+* Spring Boot
+* Spring Cloud
+* REST APIs
+
+### Microservices Tools
+
+* Eureka Service Discovery
+* Spring Cloud Gateway
+* Kafka Event Streaming
+
+### Infrastructure
+
+* MySQL
+* Redis
+* Zookeeper
+* Docker
+* Docker Compose
+
+### Build Tool
+
+* Maven
+
+---
+
+# 🚀 Infrastructure Setup
+
+The infrastructure services are managed using **Docker Compose**.
+
+Services included:
+
+* MySQL Database
+* Redis Cache
+* Kafka Broker
+* Zookeeper
+
+### Run Infrastructure
+
+```bash
+docker compose up -d
+```
+
+### Verify Containers
+
+```bash
+docker ps
+```
+
+Expected containers:
+
+```
+ecommerce-mysql
+ecommerce-redis
+ecommerce-zookeeper
+ecommerce-kafka
+```
+
+---
+
+# 🔎 Service Discovery (Eureka)
+
+The project uses **Eureka Server** to allow microservices to discover each other dynamically.
+
+### Run Service Discovery
+
+```
+cd service-discovery
+mvn spring-boot:run
+```
+
+Open the dashboard:
+
+```
+http://localhost:8761
+```
+
+This dashboard shows all registered microservices.
+
+---
+
+# 📦 Features (Planned)
+
+* User authentication & management
+* Product catalog management
+* Order processing system
+* Payment integration
+* Notification service
+* API Gateway routing
+* Service discovery using Eureka
+* Event-driven communication using Kafka
+* Redis caching for performance
+* Dockerized infrastructure
+
+---
+
+# 📚 Learning Goals
+
+This project is built to understand:
+
+* Microservices architecture
+* Service discovery
+* API gateway patterns
+* Event-driven architecture
+* Infrastructure containerization
+* Scalable backend system design
+
+---
+
+# 🧑‍💻 Author
+
+**Uttam Jena**
+Software Engineer
+
+Currently working on improving backend system design and building real-world microservice architectures.
+
+---
+
+# ⭐ Future Improvements
+
+* JWT Authentication
+* Distributed tracing
+* Centralized logging
+* Kubernetes deployment
+* CI/CD pipeline
+* Monitoring with Prometheus & Grafana
+
+---
+
+# 📜 License
+
+This project is for educational and portfolio purposes.
+Great question Uttam 👍
+For your **README and interviews**, it's important to clearly explain **what you have completed so far and why each step is needed**. Here is a **short, professional explanation**.
+
+---
+
+# 🚀 Steps Completed So Far
+
+## 1️⃣ Project Architecture Planning
+
+You designed the **microservices architecture** for the e-commerce platform.
+
+**Services planned**
+
+* user-service
+* product-service
+* order-service
+* payment-service
+* notification-service
+* api-gateway
+* service-discovery
+
+**Why it is needed**
+
+In **Microservices Architecture**, each service handles a **single responsibility**.
+This makes the system:
+
+* scalable 📈
+* easier to maintain
+* independently deployable
+
+---
+
+# 2️⃣ Created Parent Maven Project
+
+You created the root project:
+
+```
+ecommerce-microservices
+```
+
+with a **parent `pom.xml`**.
+
+**Why it is needed**
+
+The parent **Apache Maven** project:
+
+* manages dependency versions
+* controls all microservices modules
+* avoids version conflicts between services
+
+Example modules:
+
+```
+service-discovery
+api-gateway
+user-service
+product-service
+order-service
+payment-service
+notification-service
+```
+
+---
+
+# 3️⃣ Built Service Discovery (Eureka Server)
+
+You created the **service-discovery** module.
+
+This runs **Netflix Eureka**.
+
+**What it does**
+
+All microservices **register themselves** with Eureka.
+
+Example:
+
+```
+user-service → register
+order-service → register
+product-service → register
+```
+
+Other services can **discover them dynamically**.
+
+**Why it is needed**
+
+Without Eureka:
+
+```
+service A must know exact IP of service B
+```
+
+With Eureka:
+
+```
+service A → ask Eureka → get service B location
+```
+
+This enables **dynamic scaling**.
+
+---
+
+# 4️⃣ Configured Eureka Server
+
+You configured:
+
+```
+application.yml
+```
+
+Example:
+
+```yaml
+server:
+  port: 8761
+```
+
+**Result**
+
+You can open:
+
+```
+http://localhost:8761
+```
+
+and see the **Eureka dashboard**.
+
+---
+
+# 5️⃣ Created Docker Infrastructure
+
+You created:
+
+```
+docker-compose.yml
+```
+
+for infrastructure services.
+
+This starts:
+
+| Tool      | Purpose            |
+| --------- | ------------------ |
+| MySQL     | Main database      |
+| Redis     | Caching            |
+| Kafka     | Event messaging    |
+| Zookeeper | Kafka coordination |
+
+These run using **Docker Compose**.
+
+Command:
+
+```
+docker compose up -d
+```
+
+---
+
+# 6️⃣ Why Infrastructure Containers Are Important
+
+Instead of installing software manually:
+
+```
+Install MySQL
+Install Redis
+Install Kafka
+```
+
+Docker runs everything in **isolated containers**.
+
+Benefits:
+
+* reproducible environment
+* easy startup
+* production-like setup
+
+---
+
+# 📌 Current Progress Summary
+
+You have completed the **foundation of the system**:
+
+```
+Project structure
+        ↓
+Parent Maven project
+        ↓
+Service Discovery (Eureka)
+        ↓
+Docker infrastructure
+```
+
+This is exactly how **real microservices projects start**.
+
+---
+
+# 🚀 Next Step (Very Important)
+
+Next you will build:
+
+### API Gateway
+
+using **Spring Cloud Gateway**
+
+API Gateway will:
+
+* route requests to services
+* handle authentication
+* provide centralized entry point
+
+Architecture becomes:
+
+```
+Client
+   ↓
+API Gateway
+   ↓
+Microservices
+```
+
+---
+
+✅ Uttam, you are **actually following the same architecture used in real companies**.
+
+If you want, I can also show you:
+
+**The complete 30-day roadmap to finish this entire microservices project (with system design concepts recruiters ask in interviews).**
+
+
+
+
+
+# 1 — from root folder
+docker-compose up -d
+
+# 2 — from root folder  
+mvn clean install -DskipTests
+
+# 3 — from root folder
+cd service-discovery && mvn spring-boot:run
